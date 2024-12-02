@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="projects.css"> -->
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Deepanshu Bhatia</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <div id="project-container"></div>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Deepanshu Bhatia |</p>
+            <div class="social-links">
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Project data
+        const projectDetails = {
+            partnersync: {
+                title: 'PartnerSync',
+                description: 'PartnerSync is a collaboration platform that connects businesses with the right partners to accelerate project success. Built with an intuitive interface, it simplifies partner matching, communication, and workflow management.',
+                technologies: ['React', 'Node.js', 'MongoDB', 'Material UI'],
+                link: 'https://www.partnersync.com',
+                image: 'images/partnersync.png'
+            },
+            clashofclans: {
+                title: 'Redesign Clash of Clans',
+                description: 'A fresh take on the iconic mobile game, blending modern aesthetics with user-friendly interfaces. This redesign improves accessibility while retaining the game\'s unique charm.',
+                technologies: ['Adobe XD', 'Figma', 'After Effects'],
+                link: 'https://www.clashofclans.com',
+                image: 'images/redesign.png'
+            },
+            photography: {
+                title: 'Photography',
+                description: 'A collection of vibrant, high-resolution images that capture life’s most beautiful and fleeting moments. From landscapes to portraits, this project highlights a passion for storytelling through the lens.',
+                technologies: ['Canon DSLR', 'Adobe Photoshop', 'Lightroom'],
+                link: 'https://www.deepanshubhatia.com/photography',
+                image: 'images/20230814184533_IMG_5802.JPG'
+            }
+        };
+
+        // Get the project key from URL
+        const params = new URLSearchParams(window.location.search);
+        const projectKey = params.get('project');
+
+        // Display the project details
+        const container = document.getElementById('project-container');
+        if (projectKey && projectDetails[projectKey]) {
+            const project = projectDetails[projectKey];
+            container.innerHTML = `
+                <h1>${project.title}</h1>
+                <img src="${project.image}" alt="${project.title}" style="width: 100%; max-width: 600px;">
+                <p>${project.description}</p>
+                <h3>Technologies Used</h3>
+                <ul>${project.technologies.map(tech => `<li>${tech}</li>`).join('')}</ul>
+                <a href="${project.link}" target="_blank">Visit Project</a>
+            `;
+        } else {
+            container.innerHTML = '<p>Project not found. Please check the URL.</p>';
+        }
+    </script>
+</body>
+
+</html>
